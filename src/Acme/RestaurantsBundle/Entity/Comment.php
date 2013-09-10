@@ -171,10 +171,6 @@ class Comment
         return $this;
     }
     
-  
-    
-    
-    
     /**
      * Get commentUpdated
      *
@@ -203,6 +199,7 @@ class Comment
      *
      * @return string 
      */
+ 
     public function getCommentContent()
     {
         return $this->commentContent;
