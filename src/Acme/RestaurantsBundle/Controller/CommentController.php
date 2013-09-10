@@ -1,5 +1,5 @@
 <?php
-// Acme\RestaurantsBundle/Controller/CommentController.phpp
+// Acme\RestaurantsBundle/Controller/CommentController.php
 
 namespace Acme\RestaurantsBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
