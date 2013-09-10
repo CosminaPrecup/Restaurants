@@ -1,0 +1,26 @@
+{# src/Acme/RestaurantsBundle/Resources/views/Default/index.html.twig #}
+{% extends 'AcmeRestaurantsBundle::layout.html.twig' %}
+{% block body %}
+  {% for place in places %}
+    
+      <article class="places">
+         <header>     
+            <h2><a href="{{ path('_show',{'id' : place.id}) }}">{{place.placesName}}</a></h2>
+         </header>           
+         {#{<img src="{{ asset('bundles/AcmeRestaurants/images/food.jpg')}}" />}#}
+        <img src="{{place.placePhoto}}">
+         <div class="snippet">
+              <p>{{place.placesAddress}}</p>
+              <p class="continue"><a href="{{ path('_show',{'id' : place.id}) }}">Continue reading...</a></p>
+         </div>              
+         <footer class="meta">
+         <p>Comments: -</p>       
+         <p>Rating:{{place.placesRating}}</p>
+         <p>Tags: <span class="highlight">{{ place.placesTypes }}</span></p>
+         </footer>
+      </article> 
+  {% else %}
+     <p>There are no blog entries for places</p>
+     
+  {% endfor %}
+ {% endblock %}

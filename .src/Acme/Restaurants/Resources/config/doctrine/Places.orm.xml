@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Places" table="places">
+    <id name="id" type="integer" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="placesId" type="text" column="places_id" nullable="false"/>
+    <field name="placesName" type="text" column="places_name" nullable="false"/>
+    <field name="placesAddress" type="text" column="places_address" nullable="false"/>
+    <field name="placesRating" type="integer" column="places_rating" nullable="false"/>
+    <field name="placesLat" type="text" column="places_lat" nullable="false"/>
+    <field name="placesLng" type="text" column="places_lng" nullable="false"/>
+    <field name="placesOpenNow" type="integer" column="places_open_now" nullable="false"/>
+    <field name="placesReference" type="text" column="places_reference" nullable="false"/>
+    <field name="placesTypes" type="text" column="places_types" nullable="false"/>
+    <field name="placesIcon" type="text" column="places_icon" nullable="false"/>
+  </entity>
+</doctrine-mapping>

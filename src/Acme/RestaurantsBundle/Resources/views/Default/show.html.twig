@@ -1,0 +1,62 @@
+{# src/Acme/RestaurantsBundle/Resources/views/Default/index.html.twig #}
+{% extends 'AcmeRestaurantsBundle::layout.html.twig' %}
+{% block head %}
+<head>
+<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDa5Q4aq-rfNjpv-VrUoEVqGZuJW54vz4M&sensor=false"></script>
+<script>
+function initialize()
+{
+    var lat=document.getElementById('Lat').value;
+    
+    var lng=document.getElementById('Lng').value;
+    
+    var mapProp = {
+      center:new google.maps.LatLng(lat,lng),
+      zoom:5,
+      mapTypeId:google.maps.MapTypeId.ROADMAP
+      };
+    var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
+    var marker=new google.maps.LatLng(lat,lng);
+    
+    var marker=new google.maps.Marker({
+    position:new google.maps.LatLng(lat,lng)
+    });
+  marker.setMap(map);
+};
+</script>
+</head>
+{% endblock %}
+{%block title%}{{ places.placesName }}{% endblock %}
+{% block body %}
+<body>
+  <article class="places">
+     <header>     
+        <h2>{{places.placesName}}</h2>
+     </header>
+ {#{<img src="{{asset('bundles/AcmeRestaurants/images/food.jpg')}}"  class="large">}#} 
+ <img src="{{places.placePhoto}}"  class="large">
+ 
+ <div class="snippet">
+   <p>{{places.placesAddress}}</p>
+   
+ <input id="Lat" type="hidden" value="{{places.placesLat}}">
+ <input id="Lng" type="hidden" value="{{places.placesLng}}">
+ <div id="googleMap" style="width:500px;height:380px;">
+    <script>
+      google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
+ </div>
+ </div>        
+  </article>
+  <section class="comments" id="comments">
+     <section class="previous-comments">
+         <h3>Comments</h3>    
+     {{ render(controller('AcmeRestaurantsBundle:Comment:comments',{ 'id': places.id }))}}
+     </section>
+        <h3>Add Comment</h3>
+        {{ render(controller('AcmeRestaurantsBundle:Comment:create' ,{ 'id': places.id }))}}
+         
+      </section>
+</body>
+{% endblock %}
+

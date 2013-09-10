@@ -1,0 +1,57 @@
+acme_restaurants:
+    pattern: /
+    defaults: { _controller: AcmeRestaurantsBundle:Page:index }
+    requirements:
+    _method : GET  
+   
+_images:
+    pattern: /images
+    defaults: {_controller: AcmeRestaurantsBundle:Default:images}
+    _method: GET
+    
+_homepage:
+    pattern:  /homepage
+    defaults: {_controller: AcmeRestaurantsBundle:Page:index}
+    requirements:
+    methods : POST|GET 
+   
+ 
+_contact:
+    pattern: /contact
+    defaults: {_controller: AcmeRestaurantsBundle:Default:contact}
+    requirements:
+      methods: GET | POST
+  
+    
+_show:
+    pattern:  /{id}
+    defaults: {_controller: AcmeRestaurantsBundle:Default:show}
+    requirements:
+      _method: GET
+      id: \d+
+      
+_sidebar:
+    pattern:  /sidebar
+    defaults: {_controller: AcmeRestaurantsBundle:Defalut:sidebar}
+    requirements:
+     methods : POST|GET 
+     
+_comment_create:
+    pattern:  /comment/{id}
+    defaults: { _controller: AcmeRestaurantsBundle:Comment:create }
+    requirements:
+        methods:  POST|GET
+        id: \d+
+    
+_select:
+  pattern: /commnet/{id}
+  defaults: { _controller: AcmeRestaurantsBundle:Comment:comments}
+  requirements:
+      methods: POST|GET
+      id: \d+     
+
+_login:
+  pattern: /login
+  defaults: { _controller: AcmeRestaurantsBundle:Default:login}
+  requirements:
+    methods: POST 

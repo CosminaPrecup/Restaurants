@@ -1,0 +1,366 @@
+<?php
+
+namespace Acme\RestaurantsBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+
+/**
+ * Places
+ */
+class Places
+{
+    /**
+     * @var string
+     * @ORM\Id
+     * @ORM\ManyToOne(targetEntity="Restaurantsbundle\Entity\Images")
+     * @JoinColumn(name="images_id", referencedColumnName="imagesId")
+     */
+    private $placesId;
+
+    /**
+     * @var string
+     */
+    private $placesName;
+
+    /**
+     * @var string
+     */
+    private $placesAddress;
+
+    /**
+     * @var integer
+     */
+    private $placesRating;
+
+    /**
+     * @var string
+     */
+    private $placesLat;
+
+    /**
+     * @var string
+     */
+    private $placesLng;
+
+    /**
+     * @var string
+     */
+    private $placesOpenNow;
+
+    /**
+     * @var string
+     */
+    private $placesReference;
+
+    /**
+     * @var string
+     */
+    private $placesTypes;
+
+    /**
+     * @var string
+     */
+    private $placesIcon;
+
+    /**
+     * @var integer
+     */
+    private $id;
+    
+    /**
+     * @var string
+     */
+    private $placePhoto;
+    
+    
+    /**
+     * @ORM\OneToMany(targetEntity="Images", mappedBy="place")
+     * @ORM\JoinColumn(name="places_id", referencedColumnName="images_id")
+     */
+    protected $images;
+    
+    public function __construct() {
+        $this->images = new ArrayCollection();
+    }
+
+
+    /**
+     * Set placesId
+     *
+     * @param string $placesId
+     * @return Places
+     */
+    public function setPlacesId($placesId)
+    {
+        $this->placesId = $placesId;
+    
+        return $this;
+    }
+
+    /**
+     * Get placesId
+     *
+     * @return string 
+     */
+    public function getPlacesId()
+    {
+        return $this->placesId;
+    }
+
+    /**
+     * Set placesName
+     *
+     * @param string $placesName
+     * @return Places
+     */
+    public function setPlacesName($placesName)
+    {
+        $this->placesName = $placesName;
+    
+        return $this;
+    }
+
+    /**
+     * Get placesName
+     *
+     * @return string 
+     */
+    public function getPlacesName()
+    {
+        return $this->placesName;
+    }
+
+    /**
+     * Set placesAddress
+     *
+     * @param string $placesAddress
+     * @return Places
+     */
+    public function setPlacesAddress($placesAddress)
+    {
+        $this->placesAddress = $placesAddress;
+    
+        return $this;
+    }
+
+    /**
+     * Get placesAddress
+     *
+     * @return string 
+     */
+    public function getPlacesAddress()
+    {
+        return $this->placesAddress;
+    }
+
+    /**
+     * Set placesRating
+     *
+     * @param integer $placesRating
+     * @return Places
+     */
+    public function setPlacesRating($placesRating)
+    {
+        $this->placesRating = $placesRating;
+    
+        return $this;
+    }
+
+    /**
+     * Get placesRating
+     *
+     * @return integer 
+     */
+    public function getPlacesRating()
+    {
+        return $this->placesRating;
+    }
+
+    /**
+     * Set placesLat
+     *
+     * @param string $placesLat
+     * @return Places
+     */
+    public function setPlacesLat($placesLat)
+    {
+        $this->placesLat = $placesLat;
+    
+        return $this;
+    }
+
+    /**
+     * Get placesLat
+     *
+     * @return string 
+     */
+    public function getPlacesLat()
+    {
+        return $this->placesLat;
+    }
+
+    /**
+     * Set placesLng
+     *
+     * @param string $placesLng
+     * @return Places
+     */
+    public function setPlacesLng($placesLng)
+    {
+        $this->placesLng = $placesLng;
+    
+        return $this;
+    }
+
+    /**
+     * Get placesLng
+     *
+     * @return string 
+     */
+    public function getPlacesLng()
+    {
+        return $this->placesLng;
+    }
+
+    /**
+     * Set placesOpenNow
+     *
+     * @param string $placesOpenNow
+     * @return Places
+     */
+    public function setPlacesOpenNow($placesOpenNow)
+    {
+        $this->placesOpenNow = $placesOpenNow;
+    
+        return $this;
+    }
+
+    /**
+     * Get placesOpenNow
+     *
+     * @return string 
+     */
+    public function getPlacesOpenNow()
+    {
+        return $this->placesOpenNow;
+    }
+
+    /**
+     * Set placesReference
+     *
+     * @param string $placesReference
+     * @return Places
+     */
+    public function setPlacesReference($placesReference)
+    {
+        $this->placesReference = $placesReference;
+    
+        return $this;
+    }
+
+    /**
+     * Get placesReference
+     *
+     * @return string 
+     */
+    public function getPlacesReference()
+    {
+        return $this->placesReference;
+    }
+
+    /**
+     * Set placesTypes
+     *
+     * @param string $placesTypes
+     * @return Places
+     */
+    public function setPlacesTypes($placesTypes)
+    {
+        $this->placesTypes = $placesTypes;
+    
+        return $this;
+    }
+
+    /**
+     * Get placesTypes
+     *
+     * @return string 
+     */
+    public function getPlacesTypes()
+    {
+        return $this->placesTypes;
+    }
+
+    /**
+     * Set placesIcon
+     *
+     * @param string $placesIcon
+     * @return Places
+     */
+    public function setPlacesIcon($placesIcon)
+    {
+        $this->placesIcon = $placesIcon;
+    
+        return $this;
+    }
+
+    /**
+     * Get placesIcon
+     *
+     * @return string 
+     */
+    public function getPlacesIcon()
+    {
+        return $this->placesIcon;
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Get getImages
+     *
+     * @return Images 
+     */
+    public function getImages()
+    {
+        return $this->images;
+    }
+    
+    
+    /**
+     * Get placePhoto
+     *
+     * @return string 
+     */
+    public function getPlacePhoto()
+    {
+        return $this->placePhoto;
+    }
+
+    /**
+     * Set placePhoto
+     *
+     * @param string $placePhoto
+     * @return Places
+     */
+    public function setPlacePhoto($placePhoto)
+    {
+        $this->placePhoto = $placePhoto;
+    
+        return $this;
+    }
+    
+    
+    
+    
+    
+}

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Acme\RestaurantsBundle\Entity\Images" table="images">
+    <id name="id" type="integer" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="imagesId" type="text" column="images_id" nullable="false"/>
+    <field name="imagesLink" type="text" column="images_link" nullable="false"/>
+    <field name="imagesMain" type="integer" column="images_main" nullable="false"/>
+    <field name="placesName" type="text" column="places_name" nullable="false"/>
+    
+  </entity>
+</doctrine-mapping>

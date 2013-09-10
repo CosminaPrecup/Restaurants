@@ -1,0 +1,15 @@
+{# src/Acme/RestaurantsBundle/Resources/views/Page/sidebar.html.twig #} 
+{% block body %}
+  <section class="section">
+    <header>
+       <h3>Search by Raiting</h3>
+       <br/>
+    </header>
+    <form action="{{ path('_sidebar') }}" method="post" {{ form_enctype(form) }} >
+     {{ form_errors(form) }}
+     {{ form_row(form.Raiting) }}
+     {{ form_rest(form) }}
+     <input type="submit" />
+     </form>
+</section>
+{% endblock %}

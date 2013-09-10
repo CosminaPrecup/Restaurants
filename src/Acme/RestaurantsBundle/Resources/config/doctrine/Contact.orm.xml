@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Acme\RestaurantsBundle\Entity\Contact" table="contact">
+    <id name="contactId" type="integer" column="contact_id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="contactName" type="string" column="contact_name" length="25" nullable="false"/>
+    <field name="contactEmail" type="text" column="contact_email" nullable="false"/>
+    <field name="conatctSubject" type="text" column="conatct_subject" nullable="false"/>
+    <field name="contactBody" type="text" column="contact_body" nullable="false"/>
+  </entity>
+</doctrine-mapping>

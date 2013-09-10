@@ -1,0 +1,11 @@
+{# src/Acme/RestaurantsBundle/Resources/views/layout.html.twig #}
+{% extends '::base.html.twig' %}
+{% block sidebar %}
+    {% block stylesheets %}
+     {{ parent() }}
+     <link href="{{ asset('css/place.css') }}" type="text/css" rel="stylesheet" />
+     <link href="{{ asset('css/places.css') }}" type="text/css" rel="stylesheet" />
+     <link href="{{ asset('css/sidebar.css') }}" type="text/css" rel="stylesheet" />    
+    {% endblock %}
+    {% render(controller("AcmeRestaurantsBundle:Default:sidebar")) %}
+{% endblock %}

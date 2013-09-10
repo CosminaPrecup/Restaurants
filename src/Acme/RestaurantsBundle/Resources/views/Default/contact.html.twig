@@ -1,0 +1,19 @@
+{# src/Acme/RestaurantsBundle/Resources/views/Default/contact.html.twig #}
+{% extends 'AcmeRestaurantsBundle::layout.html.twig'%}
+{% block title %} Contact {% endblock%}
+{% block body %}
+  <header>
+         <h1>Contact PLACES</h1>
+  </header>
+  <p>Want to contact PLACES?</p>
+       
+  <form action="{{ path('_contact') }}" method="post" {{ form_enctype(form) }} class="blogger" >
+        {{ form_errors(form) }}
+        {{ form_row(form.Name) }}
+        {{ form_row(form.Email) }}
+        {{ form_row(form.Subject) }}
+        {{ form_row(form.Body) }}
+        {{ form_rest(form) }}
+      <input type="submit" />
+  </form>        
+{% endblock %}

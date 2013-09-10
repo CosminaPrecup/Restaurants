@@ -1,0 +1,10 @@
+{% extends 'AcmeRestaurantsBundle::layout.html.twig'%}
+{% block body %}
+<form action="{{ path('_login') }}" method="post" {{ form_enctype(form) }} class="blogger" >
+     {{ form_errors(form) }}
+     {{ form_row(form.Username) }}
+     {{ form_row(form.Password) }}
+     {{ form_rest(form) }}
+<input type="submit" />
+</form>
+{% endblock %}

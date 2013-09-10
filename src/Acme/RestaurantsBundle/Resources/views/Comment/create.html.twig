@@ -1,0 +1,8 @@
+{% extends 'AcmeDemoBundle::layout.html.twig' %}
+
+{% block title %}Add Comment{% endblock%}
+
+{% block body %}
+  {#  <h1>Add comment for place post "{{ comment.place.placesName }}"</h1>#}
+    {% include 'AcmeRestaurantsBundle:Comment:form.html.twig' with { 'form': form } %}
+{% endblock %}

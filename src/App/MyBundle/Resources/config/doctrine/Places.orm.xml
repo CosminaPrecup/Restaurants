@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Places" table="places">
+    <id name="id" type="integer" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="placesId" type="string" column="places_id" length="255" nullable="true"/>
+    <field name="placesName" type="string" column="places_name" length="255" nullable="false"/>
+    <field name="placesAddress" type="string" column="places_address" length="255" nullable="true"/>
+    <field name="placesRating" type="integer" column="places_rating" nullable="true"/>
+    <field name="placesLat" type="string" column="places_lat" length="255" nullable="true"/>
+    <field name="placesLng" type="string" column="places_lng" length="255" nullable="true"/>
+    <field name="placesOpenNow" type="string" column="places_open_now" length="255" nullable="true"/>
+    <field name="placesReference" type="string" column="places_reference" length="255" nullable="true"/>
+    <field name="placesTypes" type="string" column="places_types" length="255" nullable="true"/>
+    <field name="placesIcon" type="string" column="places_icon" length="255" nullable="true"/>
+    <field name="placePhoto" type="string" column="place_photo" length="255" nullable="true"/>
+  </entity>
+</doctrine-mapping>

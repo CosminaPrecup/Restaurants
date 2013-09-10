@@ -1,0 +1,22 @@
+Imag333es:
+    type: entity
+    table: images
+    fields:
+        imagesId:
+            id: true
+            type: integer
+            unsigned: false
+            nullable: false
+            column: images_id
+            generator:
+                strategy: IDENTITY
+        imagesLink:
+            type: text
+            nullable: false
+            column: images_link
+        imagesMain:
+            type: integer
+            unsigned: false
+            nullable: false
+            column: images_main
+    lifecycleCallbacks: {  }

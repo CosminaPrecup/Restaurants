@@ -1,0 +1,54 @@
+Place2222s:
+    type: entity
+    table: places
+    fields:
+        id:
+            id: true
+            type: integer
+            unsigned: false
+            nullable: false
+            generator:
+                strategy: IDENTITY
+        placesId:
+            type: text
+            nullable: false
+            column: places_id
+        placesName:
+            type: text
+            nullable: false
+            column: places_name
+        placesAddress:
+            type: text
+            nullable: false
+            column: places_address
+        placesRating:
+            type: integer
+            unsigned: false
+            nullable: false
+            column: places_rating
+        placesLat:
+            type: text
+            nullable: false
+            column: places_lat
+        placesLng:
+            type: text
+            nullable: false
+            column: places_lng
+        placesOpenNow:
+            type: integer
+            unsigned: false
+            nullable: false
+            column: places_open_now
+        placesReference:
+            type: text
+            nullable: false
+            column: places_reference
+        placesTypes:
+            type: text
+            nullable: false
+            column: places_types
+        placesIcon:
+            type: text
+            nullable: false
+            column: places_icon
+    lifecycleCallbacks: {  }

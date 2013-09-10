@@ -1,0 +1,12 @@
+{# src/Acme/DemoBundle/Resources/views/Comment/form.html.twig #}
+
+<form action="{{ path('_comment_create', { 'id' : id } ) }}" method="post" {{ form_enctype(form) }} class="blogger">
+    {#{ form_widget(form) }#}
+    {{ form_errors(form) }}
+     {{ form_row(form.commentUser) }}
+     {{ form_row(form.commentContent) }}
+     {{ form_rest(form) }}    
+    <p>
+        <input type="submit" value="Submit" >
+    </p>
+</form>

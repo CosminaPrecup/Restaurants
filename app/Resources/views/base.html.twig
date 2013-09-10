@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+            <meta http-equiv="Content-Type" content="text/html" charset="utf-8" ;/>
+            <title>{% block title %}symblog{% endblock %} - symblog</title>
+            <!--[if lt IE 9]>
+                <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+            <![endif]-->
+            {% block stylesheets %}
+                <link href='http://fonts.googleapis.com/css?family=Irish+Grover' rel='stylesheet' type='text/css'>
+                <link href='http://fonts.googleapis.com/css?family=La+Belle+Aurore' rel='stylesheet' type='text/css'>
+                <link href="{{ asset('css/screen.css') }}" type="text/css" rel="stylesheet" />
+                <script src="{{ asset('js/jquery.js') }}" type="text/javascript"></script>
+                <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+            {% endblock %}
+            <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
+            {% block head %}{% endblock %}
+        </head>
+    <body>
+
+        <section id="wrapper">
+            <header id="header">
+                <div class="top">
+                    {% block navigation %}
+                        <nav>
+                            <ul class="navigation">
+                                
+                                <li><a href="{{ path('_homepage') }}">Home</a></li>
+                                <li><a href="{{ path('_images') }}">About</a></li>
+                                <li><a href="{{ path('_contact') }}">Contact</a></li>
+                                <li><a href="{{ path('_login') }}">Login</a></li>
+                                
+                            </ul>
+                        </nav>
+                    {% endblock %}
+                </div>
+
+                <hgroup>
+                    <h2>{% block places_title %}<a href="#">Restaurants</a>{% endblock %}</h2>
+                    <h3>{% block places_tagline %}<a href="#">Places were your mind and taste stay</a>{% endblock %}</h3>
+                </hgroup>
+            </header>
+
+            <section class="main-col">
+                {% block body %}{% endblock %}
+            </section>
+            <aside class="sidebar">
+                {% block sidebar %}
+                {% endblock %}
+            </aside>
+
+            <div id="footer">
+                {% block footer %}
+                    Places from Cluj Napoca - created by Precup Ramona
+                {% endblock %}
+            </div>
+        </section>
+
+        {% block javascripts %}{% endblock %}
+    </body>
+</html>
