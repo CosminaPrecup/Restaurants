@@ -199,7 +199,7 @@ class Comment
      *
      * @return string 
      */
- 
+    //this is fun?I'm becoming a programmer Really?:))
     public function getCommentContent()
     {
         return $this->commentContent;
