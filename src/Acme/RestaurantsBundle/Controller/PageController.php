@@ -13,7 +13,8 @@ class Pagecontroller extends Controller
       $places_raiting= $request->query->get('raiting');
       $em = $this->getDoctrine();
       $pagetoken1="";
-      //$this->getPlaces($pagetoken1,$em);
+      $type='meal_delivery';
+      $this->getPlaces($pagetoken1,$em,$type);
       if (isset($places_raiting)){
       $query=$em->getManager()->createQuery(
                 'SELECT p from AcmeRestaurantsBundle:Places p
@@ -65,11 +66,11 @@ class Pagecontroller extends Controller
     $em->flush();              
  } 
 
- function getPlaces($pagetoken,$em)
+ function getPlaces($pagetoken,$em,$type)
  {  
     sleep(2);    
     $pagetoken=rawurlencode($pagetoken);
-    $urltest="https://maps.googleapis.com/maps/api/place/textsearch/json?query=restaurants+in+Cluj-Napoca&types=food|cafe&sensor=true&radius=5000&location=46.778125,23.597732&key=AIzaSyDebLnPBz09xodVnFIzNq2WRTVxuOsCJgc&pagetoken=$pagetoken";
+    $urltest="https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=46.778125,23.597732&types=".$type."&sensor=true&radius=5000&key=AIzaSyDebLnPBz09xodVnFIzNq2WRTVxuOsCJgc&pagetoken=$pagetoken";
     $url=str_replace("\"","",$urltest);
     $tuCurl = curl_init();
     curl_setopt($tuCurl, CURLOPT_URL, $url);
@@ -156,7 +157,7 @@ class Pagecontroller extends Controller
       else echo $tuData_a->status;
       if (isset($tuData_a->next_page_token)){
         $pagetoken=$tuData_a->next_page_token;
-        $this->getPlaces($pagetoken,$em);
+        $this->getPlaces($pagetoken,$em,$type);
       }
       return $pagetoken;		
  }

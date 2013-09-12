@@ -828,3 +828,9 @@ e69adf,127.0.0.1,GET,http://localhost/Restaurants/symfony/Symfony/web/_fragment?
 9b67e3,::1,GET,http://localhost/Restaurants/symfony/Symfony/web/css/sidebar.css,1378815864,
 abe983,::1,GET,http://localhost/Restaurants/symfony/Symfony/web/css/sidebar.css,1378815865,
 3cf7d7,::1,GET,http://localhost/Restaurants/symfony/Symfony/web/css/sidebar.css,1378815865,
+bde99a,::1,GET,http://localhost/Restaurants/symfony/Symfony/web/app_dev.php/,1378990114,
+a60e4a,127.0.0.1,GET,http://localhost/Restaurants/symfony/Symfony/web/app_dev.php/_fragment?_path=_format%3Dhtml%26_locale%3Den%26_controller%3DAcmeRestaurantsBundle%253ADefault%253Asidebar,1378990114,bde99a
+580ba0,::1,GET,http://localhost/Restaurants/symfony/Symfony/web/css/sidebar.css,1378990115,
+564684,::1,GET,http://localhost/Restaurants/symfony/Symfony/web/css/sidebar.css,1378990115,
+9ace67,::1,GET,http://localhost/Restaurants/symfony/Symfony/web/css/sidebar.css,1378990115,
+91aef2,::1,GET,http://localhost/Restaurants/symfony/Symfony/web/css/sidebar.css,1378990115,
