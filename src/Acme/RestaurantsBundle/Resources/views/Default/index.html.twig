@@ -8,7 +8,12 @@
             <h2><a href="{{ path('_show',{'id' : place.id}) }}">{{place.placesName}}</a></h2>
          </header>           
          {#{<img src="{{ asset('bundles/AcmeRestaurants/images/food.jpg')}}" />}#}
-        <img src="{{place.placePhoto}}">
+        
+         {%if place.placePhoto !="" %}     
+         <img src="{{place.placePhoto}}">     
+         {% elseif place.placePhoto <10 %}
+         <img src="{{ asset('bundles/AcmeRestaurants/images/food.jpg')}}" />
+         {% endif %}
          <div class="snippet">
               <p>{{place.placesAddress}}</p>
               <p class="continue"><a href="{{ path('_show',{'id' : place.id}) }}">Continue reading...</a></p>

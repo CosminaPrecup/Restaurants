@@ -8,6 +8,7 @@ use Acme\RestaurantsBundle\Form\ContactType;
 use Acme\RestaurantsBundle\Form\UsersType;
 use Acme\RestaurantsBundle\Entity\Contact;
 use Acme\RestaurantsBundle\Entity\Images;
+use Acme\RestaurantsBundle\Entity\Places;
 use Symfony\Component\HttpFoundation\Request;
 
 ini_set('max_execution_time', 300);
@@ -24,16 +25,17 @@ class DefaultController extends Controller
       ini_set('max_execution_time', 300);
       $em = $this->getDoctrine()->getManager();
       $pagetoken="";
-      //$this->getPhotos($pagetoken,$em);
+      $type='gym';
+      $this->getPhotos($pagetoken,$em,$type);
        
       return $this->render('AcmeRestaurantsBundle:Default:images.html.twig');
     }
      
-    public function getPhotos($pagetoken,$em)
+    public function getPhotos($pagetoken,$em,$type)
     {       
       sleep(1);    
       $pagetoken=rawurlencode($pagetoken);
-      $urltest="https://maps.googleapis.com/maps/api/place/textsearch/json?query=restaurants+in+Cluj-Napoca&types=food|cafe&sensor=true&radius=5000&location=46.778125,23.597732&key=AIzaSyDa5Q4aq-rfNjpv-VrUoEVqGZuJW54vz4M&pagetoken=$pagetoken";
+      $urltest="https://maps.googleapis.com/maps/api/place/nearbysearch/json?&types=".$type."&sensor=true&radius=5000&location=46.778125,23.597732&key=AIzaSyDa5Q4aq-rfNjpv-VrUoEVqGZuJW54vz4M&pagetoken=$pagetoken";
       $url=str_replace("\"","",$urltest);
       $tuCurl = curl_init();
       curl_setopt($tuCurl, CURLOPT_URL, $url);
@@ -50,15 +52,23 @@ class DefaultController extends Controller
         $photo_reference=""; 
         $images_id=0;   
         if (isset($tuData_a->results[$i]->photos[0])){ 
-        $photo_reference = $tuData_a->results[$i]->photos[0]->photo_reference;      
+        $photo_reference = $tuData_a->results[$i]->photos[0]->photo_reference;
         }            
         if (isset($tuData_a->results[$i]->id)){
         $images_id=$tuData_a->results[$i]->id;
         }
         if (isset($tuData_a->results[$i]->name)){
-        $places_name=$tuData_a->results[$i]->name;   
-        }       
-         
+        $places_name=$tuData_a->results[$i]->name;    
+        }
+        $places_reference=""; 
+        if (isset($tuData_a->results[$i]->reference)){
+        $places_reference=$tuData_a->results[$i]->reference;
+       
+        }
+        
+        //$this->getPhotosByReference($places_reference);
+      
+        
         $id=$this->SelectImageWithId($images_id,$em);
         $photo_link=$this->RedirectUrl($photo_reference);
         
@@ -73,11 +83,33 @@ class DefaultController extends Controller
      
       if (isset($tuData_a->next_page_token)){
       $pagetoken=$tuData_a->next_page_token;
-      $this->getPhotos($pagetoken,$em);  
+      $this->getPhotos($pagetoken,$em,$type);  
       }
          return $pagetoken;
       }
     
+    function getPhotosByReference($places_reference)
+    {
+      //$pagetoken=rawurlencode($pagetoken);
+      //  var_dump($places_reference);
+      $urltest="https://maps.googleapis.com/maps/api/place/details/json?reference=".$places_reference."&sensor=true&key=AIzaSyDa5Q4aq-rfNjpv-VrUoEVqGZuJW54vz4M";
+      $url=str_replace("\"","",$urltest);
+      $tuCurl = curl_init();
+      curl_setopt($tuCurl, CURLOPT_URL, $url);
+      curl_setopt($tuCurl, CURLOPT_SSL_VERIFYPEER, false);
+      curl_setopt($tuCurl, CURLOPT_RETURNTRANSFER, 1);
+      $tuData = curl_exec($tuCurl);
+      curl_close($tuCurl);
+      $tuData_a=json_decode($tuData);
+      
+      
+     var_dump($tuData_a);   
+         
+         
+    }   
+      
+      
+      
     private function InsertNewImage($photo_link,$images_id,$places_name)
     {
         $image=new Images();
@@ -101,20 +133,18 @@ class DefaultController extends Controller
         return $id;
     }
     
-    public function RedirectUrl($photo_reference)
-    {
-     
-        $urlpicture="https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=$photo_reference&sensor=true&key=AIzaSyDa5Q4aq-rfNjpv-VrUoEVqGZuJW54vz4M";
-        $tuCurl = curl_init($urlpicture);
-        curl_setopt($tuCurl, CURLOPT_URL, $urlpicture);
-        curl_setopt($tuCurl, CURLOPT_SSL_VERIFYPEER, false);
-        curl_setopt($tuCurl, CURLOPT_RETURNTRANSFER, 1);
-        curl_exec($tuCurl);
-        $last_url = curl_getinfo($tuCurl); 
-        $last_url = $last_url['redirect_url'];
-     
-        return $last_url;
-    }
+  public function RedirectUrl($photo_reference)
+  {
+    $urlpicture="https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=$photo_reference&sensor=true&key=AIzaSyDa5Q4aq-rfNjpv-VrUoEVqGZuJW54vz4M";
+    $tuCurl = curl_init($urlpicture);
+    curl_setopt($tuCurl, CURLOPT_URL, $urlpicture);
+    curl_setopt($tuCurl, CURLOPT_SSL_VERIFYPEER, false);
+    curl_setopt($tuCurl, CURLOPT_RETURNTRANSFER, 1);
+    curl_exec($tuCurl);
+    $last_url1 = curl_getinfo($tuCurl); 
+    $last_url = $last_url1['redirect_url'];
+    return $last_url;
+   }
  
     function showAction($id)   
     {
@@ -223,8 +253,8 @@ class DefaultController extends Controller
              ));
       }
    
-      private function CheckUser($users_name,$users_password)
-      {
+     private function CheckUser($users_name,$users_password)
+     {
         
         $em = $this->getDoctrine()->getManager();
         $query=$em->createQuery(
@@ -237,7 +267,11 @@ class DefaultController extends Controller
         $id=$query->getResult();
      
         return $id;        
-      }
+     }
+     
+   
+     
+     
  }
 
 

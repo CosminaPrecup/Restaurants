@@ -13,8 +13,8 @@ class Pagecontroller extends Controller
       $places_raiting= $request->query->get('raiting');
       $em = $this->getDoctrine();
       $pagetoken1="";
-      $type='meal_delivery';
-      $this->getPlaces($pagetoken1,$em,$type);
+      $type='gym';
+      //$this->getPlaces($pagetoken1,$em,$type);
       if (isset($places_raiting)){
       $query=$em->getManager()->createQuery(
                 'SELECT p from AcmeRestaurantsBundle:Places p
@@ -138,12 +138,13 @@ class Pagecontroller extends Controller
          }         
          $photo_reference=""; 
          if (isset($tuData_a->results[$i]->photos[0])){ 
-         $photo_reference = $tuData_a->results[$i]->photos[0]->photo_reference;      
-         } 
+         $photo_reference = $tuData_a->results[$i]->photos[0]->photo_reference;
          
+         } 
+         $place_photo=$this->RedirectUrl($photo_reference); 
          $id=$this->SelectPlaceWithId($places_id,$em);
          
-         $place_photo=$this->RedirectUrl($photo_reference);
+         
          if (empty($id))
          {  
         
@@ -154,7 +155,7 @@ class Pagecontroller extends Controller
         sleep(2);
       }
     }
-      else echo $tuData_a->status;
+    else echo $tuData_a->status;
       if (isset($tuData_a->next_page_token)){
         $pagetoken=$tuData_a->next_page_token;
         $this->getPlaces($pagetoken,$em,$type);

@@ -33,18 +33,21 @@ function initialize()
      <header>     
         <h2>{{places.placesName}}</h2>
      </header>
- {#{<img src="{{asset('bundles/AcmeRestaurants/images/food.jpg')}}"  class="large">}#} 
- <img src="{{places.placePhoto}}"  class="large">
- 
+
+         {%if places.placePhoto !="" %}     
+         <img src="{{places.placePhoto}}">     
+         {% elseif places.placePhoto <10 %}
+         <img src="{{ asset('bundles/AcmeRestaurants/images/food.jpg')}}" />
+         {% endif %}
  <div class="snippet">
    <p>{{places.placesAddress}}</p>
    
  <input id="Lat" type="hidden" value="{{places.placesLat}}">
  <input id="Lng" type="hidden" value="{{places.placesLng}}">
- <div id="googleMap" style="width:500px;height:380px;">
-    <script>
+ <div id="googleMap" style="width:500px;height:380px;clear:both;">
+  <script>
       google.maps.event.addDomListener(window, 'load', initialize);
-    </script>
+  </script>
  </div>
  </div>        
   </article>
