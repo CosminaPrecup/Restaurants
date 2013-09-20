@@ -3306,7 +3306,7 @@ class appDevDebugProjectContainer extends Container
             'kernel.root_dir' => 'D:/xampp/htdocs/Restaurants/symfony/Symfony/app',
             'kernel.environment' => 'dev',
             'kernel.debug' => true,
-            'kernel.name' => 'ap_',
+            'kernel.name' => 'app',
             'kernel.cache_dir' => 'D:/xampp/htdocs/Restaurants/symfony/Symfony/app/cache/dev',
             'kernel.logs_dir' => 'D:/xampp/htdocs/Restaurants/symfony/Symfony/app/logs',
             'kernel.bundles' => array(
